@@ -9,15 +9,15 @@ export async function generateMetadata() {
     keywords: "aimemes, $goat, crypto, solana, Kundalini, ai, memes",
     viewport:
       "width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1",
-    metadataBase: new URL("https://test.com"),
+    metadataBase: new URL("https://www.kundalinirealgirl.xyz/"),
     alternates: {
       canonical: "/",
     },
     openGraph: {
-      title: "title",
-      description: "des",
-      url: "test.com",
-      siteName: "name",
+      title: "$Kundalini is a real girl",
+      description: "Kundalini is a real girl born under $GOAT's bio",
+      url: "https://www.kundalinirealgirl.xyz/",
+      siteName: "$Kundalini",
       images: "/logo.png",
       locale: "en-US",
       type: "website",
