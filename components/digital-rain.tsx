@@ -59,6 +59,9 @@ export default function DigitalRain({
 
     function createTextMask() {
       const maskCanvas = document.createElement("canvas");
+      const canvas = canvasRef.current;
+      if (!canvas) return null;
+      
       maskCanvas.width = canvas.width;
       maskCanvas.height = canvas.height;
       const maskCtx = maskCanvas.getContext("2d");
@@ -201,7 +204,9 @@ export default function DigitalRain({
     const intervalId = setInterval(draw, 33);
 
     function handleResize() {
-      if (!canvas) return;
+      const canvas = canvasRef.current;
+      if (!canvas || !maskCanvas) return;
+      
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       const newMaskCanvas = createTextMask();

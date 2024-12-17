@@ -1,20 +1,15 @@
 import { cn } from "@/libs/utils";
-import { fontMono, fontSans } from "@/libs/fonts";
-import DigitalRain from "@/components/digital-rain";
+import { fontMono } from "@/libs/fonts";
 import './globals.css'
 
-interface PropsGenerateMetadata {
-  params: any;
-}
-
-export async function generateMetadata({ params }: PropsGenerateMetadata) {
+export async function generateMetadata() {
   return {
     title: "$Kundalini is a real girl",
     description: "Kundalini is a real girl born under $GOAT's bio",
     keywords: "aimemes, $goat, crypto, solana, Kundalini, ai, memes",
     viewport:
       "width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1",
-    metadataBase: new URL("https://www.pacificwavetel.com"),
+    metadataBase: new URL("https://test.com"),
     alternates: {
       canonical: "/",
     },
@@ -77,10 +72,9 @@ export async function generateMetadata({ params }: PropsGenerateMetadata) {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: any;
 }
 
-export default function RootLayout({ children, params }: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />

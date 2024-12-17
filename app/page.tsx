@@ -1,5 +1,4 @@
 import DigitalRain from "@/components/digital-rain";
-import Image from "next/image";
 
 export default function Home() {
   return (
