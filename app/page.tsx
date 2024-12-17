@@ -27,8 +27,8 @@ export default function Home() {
             <Image
               src="/kundalini.gif"
               alt="Kundalini who"
-              width={300}
-              height={300}
+              width={250}
+              height={250}
             ></Image>
           </div>
 
