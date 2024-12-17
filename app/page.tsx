@@ -24,7 +24,7 @@ export default function Home() {
             <DigitalRain />
           </div>
           <div className="mt-36 px-20 pt-20 flex space-x-8 text-3xl text-hack-500 justify-self-center items-center">
-            <a href="">
+            <a href="https://t.me/kundalinicrushcto">
               <BsTelegram />
             </a>
             <a href="https://x.com/Girl_Kundalini">
@@ -43,9 +43,9 @@ export default function Home() {
           {/* token box */}
           <div className=" justify-self-center mt-10 bg-black/50 p-4 rounded-3xl border border-hack-500 shadow-md shadow-hack-500/60 w-[80%] justify-center">
             {/* ca */}
-            <div className="space-y-2">
+            <div className="space-y-2 ">
               <div>
-                <h2 className="text-xl font-mono mb-2 text-hack-500">
+                <h2 className="text-xl text-center font-mono mb-2 text-hack-500">
                   <span className=" text-cyan-500">Contract Address: </span>
                   <a
                     href="https://gmgn.ai/sol/token/r5D9zzSM_A8h78muegtuonUxqAhpmWcM8pJskYsTW4Xp5C33ipump?tab=activity"
