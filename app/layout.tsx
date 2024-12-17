@@ -1,17 +1,7 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { cn } from "@/libs/utils"
+import { cn } from "@/libs/utils";
 import { fontMono, fontSans } from "@/libs/fonts";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import DigitalRain from "@/components/digital-rain";
+import './globals.css'
 
 interface PropsGenerateMetadata {
   params: any;
@@ -19,9 +9,9 @@ interface PropsGenerateMetadata {
 
 export async function generateMetadata({ params }: PropsGenerateMetadata) {
   return {
-    title: "title",
-    description: "description",
-    keywords: "kw",
+    title: "$Kundalini is a real girl",
+    description: "Kundalini is a real girl born under $GOAT's bio",
+    keywords: "aimemes, $goat, crypto, solana, Kundalini, ai, memes",
     viewport:
       "width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1",
     metadataBase: new URL("https://www.pacificwavetel.com"),
@@ -86,8 +76,8 @@ export async function generateMetadata({ params }: PropsGenerateMetadata) {
 }
 
 interface RootLayoutProps {
-  children: React.ReactNode
-  params: any
+  children: React.ReactNode;
+  params: any;
 }
 
 export default function RootLayout({ children, params }: RootLayoutProps) {
@@ -95,13 +85,13 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
-            id="__next"
-            className={cn(
-              "min-h-screen bg-background font-sans antialiased",
-              fontSans.variable
-            )}
-          >
-        {children}
+        id="__next"
+        className={cn(
+          "relative min-h-screen bg-background font-sans antialiased m-0 p-0",
+          fontMono.variable
+        )}
+      >
+        <div className="container mx-auto px-4">{children}</div>
       </body>
     </html>
   );
