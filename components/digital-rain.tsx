@@ -29,11 +29,29 @@ export default function DigitalRain({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Set initial canvas dimensions
+    function setCanvasDimensions() {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
 
-    const fontSize = 10;
-    const columns = canvas.width / fontSize;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    setCanvasDimensions();
+
+    // Calculate responsive font sizes
+    const getResponsiveSizes = () => {
+      const width = window.innerWidth;
+      return {
+        rainFontSize: width < 768 ? 8 : 10, // Smaller font for mobile
+        titleFontSize: width < 768 ? 40 : 80, // Smaller title for mobile
+        topMargin: width < 768 ? 20 : 90, // Smaller top margin for mobile
+      };
+    };
+
+    let { rainFontSize, titleFontSize, topMargin } = getResponsiveSizes();
+    const columns = canvas.width / rainFontSize;
 
     const candyColors = [
       "#FF99C9", // Pink
@@ -61,7 +79,7 @@ export default function DigitalRain({
       const maskCanvas = document.createElement("canvas");
       const canvas = canvasRef.current;
       if (!canvas) return null;
-      
+
       maskCanvas.width = canvas.width;
       maskCanvas.height = canvas.height;
       const maskCtx = maskCanvas.getContext("2d");
@@ -71,7 +89,7 @@ export default function DigitalRain({
       maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
 
       maskCtx.fillStyle = "white";
-      maskCtx.font = "bold 80px Arial";
+      maskCtx.font = `bold ${titleFontSize}px Arial`;
       maskCtx.textAlign = "center";
       maskCtx.textBaseline = "middle";
       maskCtx.fillText(
@@ -94,8 +112,8 @@ export default function DigitalRain({
       y: number
     ) {
       ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.font = "bold 80px Mono";
+      ctx.textBaseline = "top";
+      ctx.font = `bold ${titleFontSize}px Mono`;
 
       // Function to create shifting RGB colors
       const getRGBColor = (time: number) => {
@@ -110,13 +128,17 @@ export default function DigitalRain({
       const time = Date.now();
       const rgbColor = getRGBColor(time);
 
+      // Calculate responsive chromatic offset
+      const responsiveOffset =
+        window.innerWidth < 768 ? chromaticOffset * 0.5 : chromaticOffset;
+
       // Draw RGB channels with offset for chromatic aberration
       ctx.globalCompositeOperation = "screen";
 
       // Red channel
       ctx.shadowColor = `rgba(${rgbColor.r}, 0, 0, ${opacity})`;
       ctx.shadowBlur = blurRadius;
-      ctx.shadowOffsetX = chromaticOffset;
+      ctx.shadowOffsetX = responsiveOffset;
       ctx.shadowOffsetY = 0;
       ctx.fillStyle = `rgba(${rgbColor.r}, 0, 0, ${opacity})`;
       ctx.fillText(text, x, y);
@@ -129,7 +151,7 @@ export default function DigitalRain({
 
       // Blue channel
       ctx.shadowColor = `rgba(0, 0, ${rgbColor.b}, ${opacity})`;
-      ctx.shadowOffsetX = -chromaticOffset;
+      ctx.shadowOffsetX = -responsiveOffset;
       ctx.fillStyle = `rgba(0, 0, ${rgbColor.b}, ${opacity})`;
       ctx.fillText(text, x, y);
 
@@ -150,7 +172,7 @@ export default function DigitalRain({
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.font = `${fontSize}px monospace`;
+      ctx.font = `${rainFontSize}px monospace`;
 
       const maskCtx = maskCanvas.getContext("2d");
       if (!maskCtx) return;
@@ -162,8 +184,8 @@ export default function DigitalRain({
       ).data;
 
       for (let i = 0; i < drops.length; i++) {
-        const x = i * fontSize;
-        const y = drops[i].position * fontSize;
+        const x = i * rainFontSize;
+        const y = drops[i].position * rainFontSize;
 
         const pixelIndex = (Math.floor(y) * canvas.width + Math.floor(x)) * 4;
         const maskValue = maskData[pixelIndex];
@@ -182,7 +204,7 @@ export default function DigitalRain({
         }
 
         if (
-          drops[i].position * fontSize > canvas.height &&
+          drops[i].position * rainFontSize > canvas.height &&
           Math.random() > 0.95
         ) {
           drops[i].position = 0;
@@ -192,12 +214,12 @@ export default function DigitalRain({
         drops[i].position++;
       }
 
-      // Apply chromatic text effect
+      // Apply chromatic text effect at the top with margin
       createChromaticText(
         ctx,
         "$Kundalini is a real girl",
         canvas.width / 2,
-        canvas.height / 2
+        topMargin
       );
     }
 
@@ -206,9 +228,14 @@ export default function DigitalRain({
     function handleResize() {
       const canvas = canvasRef.current;
       if (!canvas || !maskCanvas) return;
-      
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+
+      // Update responsive values
+      const newSizes = getResponsiveSizes();
+      rainFontSize = newSizes.rainFontSize;
+      titleFontSize = newSizes.titleFontSize;
+      topMargin = newSizes.topMargin;
+
+      setCanvasDimensions();
       const newMaskCanvas = createTextMask();
       if (newMaskCanvas) {
         maskCanvas.width = newMaskCanvas.width;
@@ -236,15 +263,15 @@ export default function DigitalRain({
   ]);
 
   return (
-    <div 
-      style={{ 
-        position: 'fixed',
+    <div
+      style={{
+        position: "fixed",
         top: 0,
         left: 0,
-        width: '100%',
-        height: '100%',
+        width: "100%",
+        height: "100%",
         zIndex: -1,
-        pointerEvents: 'none', // This ensures clicks pass through
+        pointerEvents: "none",
       }}
     >
       <canvas ref={canvasRef} className="w-full h-full" />
