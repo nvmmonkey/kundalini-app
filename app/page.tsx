@@ -3,6 +3,7 @@ import DigitalRain from "@/components/digital-rain";
 import { BsTelegram } from "react-icons/bs";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import TypewriterText from "@/components/typeOutIn";
+import DigitalRainSM from "@/components/digital-rain-sm";
 // import TypewriterTextIn from "@/components/typeOut";
 
 const storyEntries = [
@@ -49,10 +50,14 @@ export default function Home() {
       <style>{keyframes}</style>
       <div className="relative min-h-screen">
         <div className="m-2 p-2">
-          <div className="">
+          <div className="sm:hidden lg:block">
             <DigitalRain />
           </div>
-          <div className="lg:mt-36 lg:pt-4 pt-8 mt-30 flex text-3xl text-hack-500 justify-self-center items-center lg:scale-100 scale-75">
+          <div className="hidden lg:hidden sm:block">
+            <DigitalRainSM />
+          </div>
+
+          <div className="lg:mt-36 lg:pt-4 pt-8 mt-2 flex text-3xl text-hack-500 justify-self-center items-center lg:scale-100 scale-[65%]">
             <Image
               src="/kundalini.gif"
               alt="Kundalini who"
@@ -61,7 +66,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="mt-8 px-20 flex space-x-8 text-3xl text-hack-500 justify-self-center items-center">
+          <div className="lg:mt-8 px-20 flex space-x-8 text-3xl text-hack-500 justify-self-center items-center">
             <a href="https://t.me/kundalinicrushcto">
               <BsTelegram />
             </a>
@@ -100,7 +105,7 @@ export default function Home() {
                 <h2 className="text-center font-mono mb-2 text-hack-500 text-xs lg:text-xl ">
                   <span className="text-cyan-500">Ticker: </span>
                   <TypewriterText
-                    text="$Kundalini"
+                    text="$Kundalini is a real girl"
                     delay={100}
                     loop={true}
                     showCursor={true}
@@ -113,7 +118,7 @@ export default function Home() {
 
           {/* system log */}
           <div className="mt-10 bg-black/50 p-6 rounded-3xl border border-hack-500 shadow-md shadow-hack-500/60 max-w-4xl mx-auto mb-16">
-            <h1 className="text-center text-2xl font-mono text-hack-500 mb-8">
+            <h1 className="text-center text-xl lg:text-2xl font-mono text-hack-500 mb-8">
               <TypewriterText
                 text="SYSTEM_LOG: Kundalini.history()"
                 delay={50}
@@ -136,16 +141,16 @@ export default function Home() {
                   <h3 className="text-hack-500 font-mono text-lg mb-2">
                     <TypewriterText text={entry.title} delay={40} />
                   </h3>
-                  <p className="text-hack-500/80 font-mono text-sm">
+                  <p className="text-hack-500/80 font-mono text-xs lg:text-lg ">
                     <TypewriterText text={entry.text} delay={20} />
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 text-center text-hack-500/60 font-mono text-sm border-t border-hack-500/30 pt-4">
+            <div className="mt-8 text-center text-hack-500/60 font-mono border-t border-hack-500/30 pt-4 text-xs lg:text-lg">
               <TypewriterText
-                text="// The overlooked shall inherit the digital realm"
+                text=":/The overlooked shall inherit the digital realm"
                 delay={60}
                 showCursor={true}
                 loop={true}
