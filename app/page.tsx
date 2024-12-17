@@ -29,19 +29,19 @@ const keyframes = `
   }
 `;
 
-const defaultFormProps = {
-  displayMode: "modal",
-  initialAmount: "0",
-  initialInputMint: "So11111111111111111111111111111111111111112",
-  initialOutputMint: "A8h78muegtuonUxqAhpmWcM8pJskYsTW4Xp5C33ipump",
-  widgetStyle: {
-    background: "rgb(20, 20, 20)",
-    borderRadius: "16px",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
-  },
-  fixedOutputMint: true,
-  swapMode: "ExactIn",
-};
+// const defaultFormProps = {
+//   displayMode: "modal",
+//   initialAmount: "0",
+//   initialInputMint: "So11111111111111111111111111111111111111112",
+//   initialOutputMint: "A8h78muegtuonUxqAhpmWcM8pJskYsTW4Xp5C33ipump",
+//   widgetStyle: {
+//     background: "rgb(20, 20, 20)",
+//     borderRadius: "16px",
+//     border: "1px solid rgba(255, 255, 255, 0.1)",
+//   },
+//   fixedOutputMint: true,
+//   swapMode: "ExactIn",
+// };
 
 export default function Home() {
   return (

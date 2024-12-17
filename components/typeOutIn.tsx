@@ -2,6 +2,15 @@
 
 import { useEffect, useState } from "react";
 
+interface TypewriterProps {
+  text: string;
+  delay?: number;
+  pauseDuration?: number;
+  loop?: boolean;
+  deleteOnComplete?: boolean;
+  showCursor?: boolean;
+}
+
 const TypewriterText = ({ 
   text, 
   delay = 50, 
@@ -9,14 +18,14 @@ const TypewriterText = ({
   loop = false,
   deleteOnComplete = false,
   showCursor = false
-}) => {
+}: TypewriterProps) => {
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    let timeout;
+    let timeout: NodeJS.Timeout;
     
     if (isComplete) return;
 
