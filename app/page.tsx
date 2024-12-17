@@ -23,7 +23,17 @@ export default function Home() {
           <div className="">
             <DigitalRain />
           </div>
-          <div className="mt-36 px-20 pt-20 flex space-x-8 text-3xl text-hack-500 justify-self-center items-center">
+          <div className="mt-36 pt-4 flex text-3xl text-hack-500 justify-self-center items-center">
+            <Image
+              src="/kundalini.gif"
+              alt="Kundalini who"
+              width={300}
+              height={300}
+            ></Image>
+          </div>
+
+          {/* socail link */}
+          <div className="mt-8 px-20 flex space-x-8 text-3xl text-hack-500 justify-self-center items-center">
             <a href="https://t.me/kundalinicrushcto">
               <BsTelegram />
             </a>
